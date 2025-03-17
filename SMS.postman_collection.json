@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "5c73b43d-a4ab-4b36-afcf-665aa07a191a",
+		"name": "SMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36291988"
+	},
+	"item": [
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "GET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"pm.expect(responseData).to.be.an('array');\r",
+									"\r",
+									"// Checking the data format for DOB\r",
+									"pm.test(\"Date of birth is in a valid date format\", function () {\r",
+									"    responseData.forEach(function(student) {\r",
+									"        pm.expect(student.dateOfBirth).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Checking the data format for enrollment date\r",
+									"pm.test(\"Enrollment date is in a valid date format\", function () {\r",
+									"    responseData.forEach(function(student) {\r",
+									"        pm.expect(student.enrollmentDate).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Checking parent's email format is correct\r",
+									"pm.test(\"Parent email is in a valid email format\", function () {\r",
+									"    responseData.forEach(function(student) {\r",
+									"        pm.expect(student.parentEmail).to.match(/^[A-Za-z0-9._%+-]+@[A-Za-z]+\\.[A-Z|a-z]{2,}$/);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Checking Phone number format is correct\r",
+									"pm.test(\"Phone number is in a valid phone number format\", function () {\r",
+									"     pm.response.json().forEach(function(student) {\r",
+									"            pm.expect(student.parentPhone).to.match(/^\\d{10}$/);\r",
+									"            // console.log(student.parentPhone);\r",
+									"     });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"students"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "Vimal",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "Mathara",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// // Loop student IDs from 1 to 10\r",
+									"// for (let studentId = 1; studentId <= 5; studentId++) {\r",
+									"//     pm.variables.set(\"studentId\", studentId);\r",
+									"//     setTimeout(function() {\r",
+									"//         pm.sendRequest({url: `http://localhost:8080/api/v1/student/${studentId}`,method: 'GET'});\r",
+									"//         console.log(`Request sent for student ${studentId}`);\r",
+									"//     }, 1000 * studentId);\r",
+									"// }\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/student/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"student",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"dateOfBirth\": \"2010-05-15\",\r\n  \"gender\": \"MALE\",\r\n  \"parentName\": \"Jane Doe\",\r\n  \"parentEmail\": \"jane.doe@example.com\",\r\n  \"parentPhone\": \"1234567890\",\r\n  \"address\": \"123 Main Street\",\r\n  \"enrollmentDate\": \"2022-09-01\",\r\n  \"status\": \"ACTIVE\",\r\n  \"classroom\": {\r\n    \"classId\": 2\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\": 2,\r\n    \"firstName\": \"Vimal\",\r\n    \"lastName\": \"Werasura\",\r\n    \"dateOfBirth\": \"2015-07-09\",\r\n    \"gender\": \"MALE\",\r\n    \"parentName\": \"Malani\",\r\n    \"parentEmail\": \"malani@test.com\",\r\n    \"parentPhone\": \"0713239568\",\r\n    \"address\": \"Galle\",\r\n    \"enrollmentDate\": \"2021-05-10\",\r\n    \"status\": \"ACTIVE\",\r\n  \"classroom\": {\r\n    \"classId\": 3\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/student/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"student",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/student/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"student",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teachers",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teacher/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teacher",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Chamalika\",\r\n    \"lastName\": \"Nayanathara\",\r\n    \"gender\": \"FEMALE\",\r\n    \"email\": \"chamalika@test.com\",\r\n    \"phoneNumber\": \"0745698341\",\r\n    \"subject\": \"MATHS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teacher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teacherId\": 1,\r\n    \"firstName\": \"Chamalika\",\r\n    \"lastName\": \"Nayanathara\",\r\n    \"gender\": \"FEMALE\",\r\n    \"email\": \"chamalika01@test.com\",\r\n    \"phoneNumber\": \"0745698341\",\r\n    \"subject\": \"MATHS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teacher/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teacher",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/teacher/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"teacher",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
