@@ -1,6 +1,7 @@
 package com.sms.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,8 @@ public class Classroom {
     @JoinColumn(name = "teacherId", nullable = false)
     private Teacher teacher;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Student> students = new ArrayList<>();
 }

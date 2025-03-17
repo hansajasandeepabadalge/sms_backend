@@ -1,5 +1,6 @@
 package com.sms.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sms.enums.Gender;
 import com.sms.enums.Status;
@@ -7,6 +8,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "student")
@@ -42,8 +45,13 @@ public class Student {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "classId", nullable = false )
+    @JsonBackReference
     private Classroom classroom;
+
+//    @Override
+//    public String toString() {
+//        return "id: " + studentId + ", name: " + firstName;
+//    }
 }

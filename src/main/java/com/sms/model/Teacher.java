@@ -33,4 +33,9 @@ public class Teacher {
     @JsonBackReference
     @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Classroom> classes = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "id: " + teacherId + ", name: " + firstName;
+    }
 }
