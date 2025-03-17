@@ -379,6 +379,149 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Classroom",
+			"item": [
+				{
+					"name": "GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classrooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classrooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classroom/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classroom",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"className\": \"Grade 05\",\r\n        \"teacher\": {\r\n            \"teacherId\": 4\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classroom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"classId\": 1,\r\n    \"className\": \"Grade 06\",\r\n    \"teacher\": {\r\n        \"teacherId\": 3,\r\n        \"firstName\": \"Chamalika\",\r\n        \"lastName\": \"Nayanathara\",\r\n        \"gender\": \"FEMALE\",\r\n        \"email\": \"chamalika01@test.com\",\r\n        \"phoneNumber\": \"0745698341\",\r\n        \"subject\": \"MATHS\"\r\n    },\r\n    \"students\": [\r\n        {\r\n            \"studentId\": 1,\r\n            \"firstName\": \"Amal\",\r\n            \"lastName\": \"Gayanaka\",\r\n            \"dateOfBirth\": \"2015-11-05\",\r\n            \"gender\": \"MALE\",\r\n            \"parentName\": \"Gunasekara\",\r\n            \"parentEmail\": \"guna@test.com\",\r\n            \"parentPhone\": \"0769532140\",\r\n            \"address\": \"Mathara\",\r\n            \"enrollmentDate\": \"2021-05-09\",\r\n            \"status\": \"ACTIVE\"\r\n        },\r\n        {\r\n            \"studentId\": 4,\r\n            \"firstName\": \"Maya\",\r\n            \"lastName\": \"Void\",\r\n            \"dateOfBirth\": \"2011-07-22\",\r\n            \"gender\": \"FEMALE\",\r\n            \"parentName\": \"Mia\",\r\n            \"parentEmail\": \"mia@test.com\",\r\n            \"parentPhone\": \"0712365489\",\r\n            \"address\": \"USA\",\r\n            \"enrollmentDate\": \"2017-01-01\",\r\n            \"status\": \"ACTIVE\"\r\n        },\r\n        {\r\n            \"studentId\": 6,\r\n            \"firstName\": \"John\",\r\n            \"lastName\": \"Doe\",\r\n            \"dateOfBirth\": \"2010-05-15\",\r\n            \"gender\": \"MALE\",\r\n            \"parentName\": \"Jane Doe\",\r\n            \"parentEmail\": \"jane.doe@example.com\",\r\n            \"parentPhone\": \"1234567890\",\r\n            \"address\": \"123 Main Street\",\r\n            \"enrollmentDate\": \"2022-09-01\",\r\n            \"status\": \"ACTIVE\"\r\n        },\r\n        {\r\n            \"studentId\": 8,\r\n            \"firstName\": \"John\",\r\n            \"lastName\": \"Doe\",\r\n            \"dateOfBirth\": \"2010-05-15\",\r\n            \"gender\": \"MALE\",\r\n            \"parentName\": \"Jane Doe\",\r\n            \"parentEmail\": \"jane.doe@example.com\",\r\n            \"parentPhone\": \"1234567890\",\r\n            \"address\": \"123 Main Street\",\r\n            \"enrollmentDate\": \"2022-09-01\",\r\n            \"status\": \"ACTIVE\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classroom/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classroom",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/classroom/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"classroom",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
