@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +33,8 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<Classroom> classes = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "id: " + teacherId + ", name: " + firstName;
-    }
+//    @Override
+//    public String toString() {
+//        return "id: " + teacherId + ", name: " + firstName;
+//    }
 }

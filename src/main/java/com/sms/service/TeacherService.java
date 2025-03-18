@@ -1,6 +1,5 @@
 package com.sms.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sms.model.Teacher;
 import com.sms.repository.TeacherRepository;
 import jakarta.persistence.EntityNotFoundException;

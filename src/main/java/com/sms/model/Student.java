@@ -1,14 +1,12 @@
 package com.sms.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sms.enums.Gender;
 import com.sms.enums.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
-import java.time.LocalDate;
 
 
 @Entity

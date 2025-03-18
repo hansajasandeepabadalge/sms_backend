@@ -1,6 +1,5 @@
 package com.sms.service;
 
-
 import com.sms.model.Student;
 import com.sms.repository.StudentRepository;
 import jakarta.persistence.EntityNotFoundException;

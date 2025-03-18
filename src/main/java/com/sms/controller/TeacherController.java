@@ -1,6 +1,5 @@
 package com.sms.controller;
 
-import com.sms.model.Student;
 import com.sms.model.Teacher;
 import com.sms.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
