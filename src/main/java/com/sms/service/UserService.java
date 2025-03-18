@@ -1,11 +1,13 @@
 package com.sms.service;
 
-import com.sms.model.User;
-import com.sms.repository.UserRepository;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.sms.enums.Role;
+import com.sms.model.User;
+import com.sms.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -27,5 +29,13 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public boolean isAdmin() {
+        return getCurrentUserRole() != Role.ADMIN;
+    }
+
+    private Role getCurrentUserRole() {
+        return Role.TEACHER;
     }
 }
