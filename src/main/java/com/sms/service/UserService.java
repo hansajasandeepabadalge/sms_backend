@@ -31,11 +31,11 @@ public class UserService {
         return null;
     }
 
-    public boolean isAdmin() {
+    public boolean isNotAdmin() {
         return getCurrentUserRole() != Role.ADMIN;
     }
 
     private Role getCurrentUserRole() {
-        return Role.TEACHER;
+        return Role.ADMIN;
     }
 }

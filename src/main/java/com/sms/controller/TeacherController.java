@@ -51,41 +51,47 @@ public class TeacherController {
     // Adding a new Teacher
     @PostMapping("/teacher")
     public ResponseEntity<?> createTeacher(@RequestBody Teacher teacher) {
-        if (userService.isAdmin()) {
+        if (userService.isNotAdmin()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Permission denied");
+        } else {
+            return ResponseEntity.ok(teacherService.addTeacher(teacher));
         }
-        return ResponseEntity.ok(teacherService.addTeacher(teacher));
     }
 
     // Update existing Teachers' details
     @PutMapping("/teacher/{id}")
     public ResponseEntity<?> updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
-        if (userService.isAdmin()) {
+        if (userService.isNotAdmin()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Permission denied");
-        }
-        if (!id.equals(teacher.getTeacherId())) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(id + " Teacher not found");
-        }
-        Teacher updatedTeacher = teacherService.updateTeacher(teacher);
-        if (updatedTeacher != null) {
-            return ResponseEntity.ok(updatedTeacher);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Teacher with ID " + id + " not found");
+            if (!id.equals(teacher.getTeacherId())) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(id + " Teacher not found");
+            }
+
+            Teacher updatedTeacher = teacherService.updateTeacher(teacher);
+
+            if (updatedTeacher != null) {
+                return ResponseEntity.ok(updatedTeacher);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Teacher with ID " + id + " not found");
+            }
         }
     }
 
     // Delete teacher by ID
     @DeleteMapping("/teacher/{id}")
     public ResponseEntity<?> deleteTeacherById(@PathVariable Long id) {
-        if (userService.isAdmin()) {
+        if (userService.isNotAdmin()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Permission denied");
-        }
-        Teacher teacher = teacherService.getTeacherById(id);
-        if (teacher != null) {
-            teacherService.deleteTeacher(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Teacher with ID " + id + " deleted successfully");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Teacher with ID " + id + " not found");
+            Teacher teacher = teacherService.getTeacherById(id);
+
+            if (teacher != null) {
+                teacherService.deleteTeacher(id);
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Teacher with ID " + id + " deleted successfully");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Teacher with ID " + id + " not found");
+            }
         }
     }
 }
